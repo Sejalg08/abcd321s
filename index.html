@@ -3,82 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alumni Connect - Login, Sign Up, and Password Recovery for alumni and students">
-    <title>Alumni Connect - Authentication</title>
+    <title>Connexions</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
 </head>
 <body>
-    <main class="container">
-        <div class="tabs" role="tablist">
-            <div class="tab active" id="loginTab" role="tab" aria-selected="true" tabindex="0">Login</div>
-            <div class="tab" id="signupTab" role="tab" aria-selected="false" tabindex="0">Sign Up</div>
-        </div>
-        <div class="form-container">
-            <form id="loginForm" aria-labelledby="loginTab">
-                <h2 class="animate-title">Welcome Back</h2>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">📧</i>
-                    <input type="email" id="loginEmail" placeholder="Email" required aria-label="Email">
-                </div>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">🔒</i>
-                    <input type="password" id="loginPassword" placeholder="Password" required aria-label="Password">
-                </div>
-                <button type="submit" class="animate-button">Login</button>
-                <div class="forgot-password animate-link">
-                    <a href="#" id="forgotPasswordLink">Forgot Password?</a>
-                </div>
-            </form>
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-message">Welcome to Connexions</div>
+    </div>
 
-            <form id="signupForm" style="display: none;" aria-labelledby="signupTab">
-                <h2 class="animate-title">Create Account</h2>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">👤</i>
-                    <input type="text" id="signupUsername" placeholder="Username" required aria-label="Username">
+    <div id="main-content" class="hidden">
+        <nav class="top-nav">
+            <div class="container">
+                <div class="logo">Connexions</div>
+                <input type="search" placeholder="Search for posts, people, or resources..." class="search-input">
+                <div class="user-actions">
+                    <button class="icon-button"><i data-lucide="bell"></i></button>
+                    <div class="avatar">U</div>
                 </div>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">📧</i>
-                    <input type="email" id="signupEmail" placeholder="Email" required aria-label="Email">
-                </div>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">📞</i>
-                    <input type="tel" id="signupPhone" placeholder="Phone Number" required aria-label="Phone Number">
-                </div>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">🏫</i>
-                    <input type="text" id="signupUniversity" placeholder="University" required aria-label="University">
-                </div>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">🎓</i>
-                    <select id="signupRole" required aria-label="Role">
-                        <option value="">Select Role</option>
-                        <option value="alumni">Alumni</option>
-                        <option value="student">Student</option>
-                    </select>
-                </div>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">🔒</i>
-                    <input type="password" id="signupPassword" placeholder="Password" required aria-label="Password">
-                </div>
-                <button type="submit" class="animate-button">Sign Up</button>
-            </form>
+            </div>
+        </nav>
 
-            <form id="forgotPasswordForm" style="display: none;">
-                <a href="#" class="back-to-login animate-link" id="backToLoginLink">← Back to Login</a>
-                <h2 class="animate-title">Forgot Password</h2>
-                <div class="input-group animate-input">
-                    <i aria-hidden="true">📧</i>
-                    <input type="email" id="forgotPasswordEmail" placeholder="Email" required aria-label="Email">
+        <main class="container main-container">
+            <div class="content-wrapper">
+                <div class="main-feed">
+                    <section class="hero">
+                        <h1>Connect. Collaborate. Grow.</h1>
+                        <p>Join our vibrant community of students, alumni, and faculty.</p>
+                        <button class="btn btn-primary">Get Started</button>
+                    </section>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Home Feed</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="tabs">
+                                <button class="tab active" data-tab="recent">Most Recent</button>
+                                <button class="tab" data-tab="popular">Popular</button>
+                                <button class="tab" data-tab="questions">Questions</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="posts-container" class="posts-grid"></div>
+
+                    <button class="btn btn-primary btn-full">
+                        <i data-lucide="plus-circle"></i> Create New Post
+                    </button>
                 </div>
-                <button type="submit" class="animate-button">Reset Password</button>
-            </form>
-        </div>
-    </main>
 
-    <footer>
-        <p>&copy; 2023 Alumni Connect. All rights reserved.</p>
-    </footer>
+                <div class="sidebar">
+                    <div class="sidebar-icon" data-section="events">
+                        <i data-lucide="calendar"></i>
+                        <div class="tooltip">Upcoming Events</div>
+                    </div>
+                    <div class="sidebar-icon" data-section="jobs">
+                        <i data-lucide="briefcase"></i>
+                        <div class="tooltip">Job Opportunities</div>
+                    </div>
+                    <div class="sidebar-icon" data-section="resources">
+                        <i data-lucide="book-open"></i>
+                        <div class="tooltip">Top Resources</div>
+                    </div>
+                    <div class="sidebar-icon">
+                        <i data-lucide="users"></i>
+                        <div class="tooltip">Mentorship Program</div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
-    <script src="handle.js"></script>
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-info">
+                        <h2>Connexions</h2>
+                        <p>Empowering students and alumni to connect, collaborate, and grow together.</p>
+                    </div>
+                    <div class="quick-links">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
