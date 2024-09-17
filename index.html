@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University Development</title>
+    <title>Connexions</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -39,12 +39,31 @@
         header {
             background-color: var(--primary-color);
             padding: 1rem 0;
-            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         header .logo h1 {
             color: var(--white);
             font-size: 2rem;
+        }
+
+        header .top-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        header .top-icons i {
+            font-size: 1.5rem;
+            color: var(--white);
+            cursor: pointer;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        header .top-icons i:hover {
+            color: #f5f5f5;
+            transform: scale(1.2);
         }
 
         .main-container {
@@ -68,6 +87,86 @@
             font-size: 1.25rem;
             color: var(--text-color);
             margin-bottom: 2rem;
+        }
+
+        .post {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            text-align: left;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .post-content {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .post-actions i {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .post-actions i:hover {
+            color: var(--primary-color);
+        }
+
+        .emoji-container {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .emoji-container span {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .emoji-container span:hover {
+            transform: scale(1.2);
+        }
+
+        .comment-box {
+            margin-top: 1rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .comment-box textarea {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .comment-box button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .comment-box button:hover {
+            background-color: #6a3dc4;
         }
 
         .sidebar {
@@ -153,7 +252,13 @@
     <header>
         <div class="container">
             <div class="logo">
-                <h1>University Development</h1>
+                <h1>Connexions</h1>
+            </div>
+            <div class="top-icons">
+                <i class="fas fa-user-circle" title="Profile"></i>
+                <i class="fas fa-donate" title="Donation"></i>
+                <i class="fas fa-users" title="Connections"></i>
+                <i class="fas fa-exclamation-circle" title="Problems Raised"></i>
             </div>
         </div>
     </header>
@@ -161,8 +266,33 @@
     <!-- Main Section -->
     <main class="main-container">
         <div class="hero">
-            <h1>Welcome to the University Development Website</h1>
-            <p>Explore our departments, admissions, research, and more!</p>
+            <h1>Welcome to Connexions</h1>
+            <p>Explore posts, share updates, and connect with others!</p>
+        </div>
+
+        <!-- Post Section -->
+        <div class="post">
+            <div class="post-header">
+                <h2>University Updates</h2>
+                <div class="post-actions">
+                    <i class="fas fa-share" title="Share"></i>
+                    <i class="fas fa-comment" title="Comment"></i>
+                    <i class="fas fa-thumbs-up" title="Like"></i>
+                </div>
+            </div>
+            <div class="post-content">
+                <p>Our university has launched a new research initiative focused on sustainability and green technology. Join us in making a difference!</p>
+            </div>
+            <div class="emoji-container">
+                <span>😀</span>
+                <span>👍</span>
+                <span>❤️</span>
+                <span>🎉</span>
+            </div>
+            <div class="comment-box">
+                <textarea placeholder="Write a comment..."></textarea>
+                <button>Post</button>
+            </div>
         </div>
 
         <!-- Sidebar Icons (Right) -->
@@ -179,8 +309,8 @@
                 <i class="fas fa-user-graduate"></i>
                 <span class="tooltip">Admissions</span>
             </div>
-            <div class="sidebar-icon" data-hover="Research">
-                <i class="fas fa-flask"></i>
+            <div class="sidebar-icon" data-hover="Research
+ <i class="fas fa-flask"></i>
                 <span class="tooltip">Research</span>
             </div>
             <div class="sidebar-icon" data-hover="Contact Us">
@@ -206,6 +336,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             const sidebarIcons = document.querySelectorAll('.sidebar-icon');
             const mainContainer = document.querySelector('.main-container');
+            const topIcons = document.querySelectorAll('.top-icons i');
 
             sidebarIcons.forEach(icon => {
                 icon.addEventListener('mouseover', function () {
@@ -214,6 +345,16 @@
 
                 icon.addEventListener('mouseout', function () {
                     mainContainer.classList.remove('hovering');
+                });
+            });
+
+            topIcons.forEach(icon => {
+                icon.addEventListener('mouseover', function () {
+                    icon.style.transform = 'scale(1.2)';
+                });
+
+                icon.addEventListener('mouseout', function () {
+                    icon.style.transform = 'scale(1)';
                 });
             });
         });
